@@ -19,7 +19,6 @@ function getAllData(query) {
 
     return result
 
-
 }
 
 function getOne(id) {

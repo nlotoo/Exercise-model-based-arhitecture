@@ -1,15 +1,20 @@
 
 const express = require('express');
+
 const app = express();
 
 const expressConfig = require('./config/express')
+
+require('./config/mongoose.js')(app);
+
 
 const config = require('./config/config.js')
 const router = require('./routes')
 
 
-
 expressConfig(app)
+
+
 
 app.use(router)
 
