@@ -22,6 +22,15 @@ class Cube {
         })
     }
 
+    static getAll() {
+    
+        return database;
+
+    }
+    static getOne(id) {
+        database.find(x => x.id == id)
+    }
+
 }
 
 module.exports = Cube;

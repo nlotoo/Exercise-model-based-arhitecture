@@ -7,8 +7,10 @@ const productServices = require('../services/productServices.js')
 
 
 router.get('/', (req, res) => {
+
+
     let product = productServices.getAllData(req.query)
-    console.log(req.query.search)
+
 
     res.render('home', { title: 'Home', product })
 

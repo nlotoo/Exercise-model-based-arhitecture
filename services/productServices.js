@@ -4,22 +4,26 @@ const database = require('../config/db.json')
 
 
 function getAllData(query) {
-    let result = database
+    let result = CubeMaker.getAll()
 
 
     if (query.search) {
         result = database.filter(x => x.name.toLowerCase().includes(query.search))
-    } else if (query.from) {
+    }
+    if (query.from) {
         result = database.filter(x => Number(x.difficultyLevel) >= query.from)
-    } else if (query.to) {
+    }
+    if (query.to) {
         result = database.filter(x => Number(x.difficultyLevel) <= query.to)
     }
 
     return result
+
+
 }
 
 function getOne(id) {
-    return database.find(x => x.id == id)
+    return CubeMaker.getOne(id)
 
 }
 
