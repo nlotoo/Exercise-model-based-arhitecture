@@ -4,8 +4,8 @@ const database = require('../config/db.json')
 
 
 function getAllData(query) {
-    let result = CubeMaker.getAll()
-
+    // let result = CubeMaker.getAll()
+    let result = CubeMaker.find({}).lean()
 
     if (query.search) {
         result = database.filter(x => x.name.toLowerCase().includes(query.search))
@@ -29,11 +29,7 @@ function getOne(id) {
 function create(data) {
 
 
-    const cube = new CubeMaker(uniqueId(),
-        data.name,
-        data.description,
-        data.imageUrl,
-        data.difficultyLevel)
+    const cube = new CubeMaker(data)
 
     return cube.save()
 

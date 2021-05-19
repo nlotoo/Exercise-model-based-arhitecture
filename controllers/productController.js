@@ -9,12 +9,16 @@ const productServices = require('../services/productServices.js')
 router.get('/', (req, res) => {
 
 
-    let product = productServices.getAllData(req.query)
+    productServices.getAllData(req.query)
+        .then(product => {
+            res.render('home', { title: 'Home', product })
+
+        })
+        .catch(() => res.status(500).end)
 
 
-    res.render('home', { title: 'Home', product })
 
-   
+
 });
 
 router.get('/create', (req, res) => {
@@ -24,6 +28,7 @@ router.post('/create', (req, res) => {
     let data = req.body
 
     // TODO: VALIDATION
+
     productServices.create(data)
     res.redirect('/')
 
