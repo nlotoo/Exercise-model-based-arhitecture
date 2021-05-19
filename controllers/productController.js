@@ -12,13 +12,8 @@ router.get('/', (req, res) => {
     productServices.getAllData(req.query)
         .then(product => {
             res.render('home', { title: 'Home', product })
-
         })
         .catch(() => res.status(500).end)
-
-
-
-
 });
 
 router.get('/create', (req, res) => {
@@ -37,8 +32,13 @@ router.post('/create', (req, res) => {
 
 router.get('/details/:id?', (req, res) => {
 
-    products = productServices.getOne(req.params.id)
-    res.render('details', { title: 'Details', products })
+    productServices.getOne(req.params.id)
+        .then(product => {
+            res.render('details', { title: 'Details', product })
+
+        })
+        .catch(() => res.status(500))
+    // console.log({ product })
 
 })
 

@@ -1,4 +1,4 @@
-const uniqueId = require('unique')
+
 const CubeMaker = require('../models/cubic')
 const database = require('../config/db.json')
 
@@ -22,19 +22,13 @@ function getAllData(query) {
 }
 
 function getOne(id) {
-    return CubeMaker.getOne(id)
+    return CubeMaker.findById(id).lean()
 
 }
 
 function create(data) {
-
-
     const cube = new CubeMaker(data)
-
     return cube.save()
-
-
-
 }
 
 
