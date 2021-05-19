@@ -32,17 +32,16 @@ router.post('/create', (req, res) => {
 
 router.get('/details/:id?', (req, res) => {
 
-    productServices.getOne(req.params.id)
-        .then(product => {
-            res.render('details', { title: 'Details', product })
-
-        })
-        .catch(() => res.status(500))
-    // console.log({ product })
-
+   productServices.getOne(req.params.id)
+    .then( product =>{
+        res.render('details', { title: 'Details', product })
+        
+    })
+    .catch(()=> res.status(500))
+ 
 })
 
 
 
 
-module.exports = router
+module.exports = router;
