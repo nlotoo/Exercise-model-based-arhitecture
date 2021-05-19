@@ -1,6 +1,6 @@
 
 const CubeMaker = require('../models/cubic')
-const database = require('../config/db.json')
+
 
 
 function getAllData(query) {

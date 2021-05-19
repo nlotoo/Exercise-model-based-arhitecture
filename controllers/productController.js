@@ -3,7 +3,8 @@ const router = Router();
 
 
 
-const productServices = require('../services/productServices.js')
+const productServices = require('../services/productServices')
+const acessoryServices = require('../services/acessoryServices')
 
 
 router.get('/', (req, res) => {
@@ -32,14 +33,34 @@ router.post('/create', (req, res) => {
 
 router.get('/details/:id?', (req, res) => {
 
-   productServices.getOne(req.params.id)
-    .then( product =>{
-        res.render('details', { title: 'Details', product })
-        
-    })
-    .catch(()=> res.status(500))
- 
+    productServices.getOne(req.params.id)
+        .then(product => {
+            res.render('details', { title: 'Details', product })
+
+        })
+        .catch(() => res.status(500))
+
 })
+
+
+
+router.get('/accessory', (req, res) => {
+    res.render('createAccessory', { title: 'Acessory' })
+})
+
+router.post('/accessory', (req, res) => {
+
+
+
+
+        acessoryServices.create(req.body)
+            .then(() => res.redirect('/'))
+
+
+
+})
+
+
 
 
 

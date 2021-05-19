@@ -1,10 +1,9 @@
-
 const mongoose = require('mongoose')
 
 
 let accessorySchema = new mongoose.Schema({
 
-    id= mongoose.Types.ObjectId,
+  
     name: {
         required: true,
         type: String
@@ -22,4 +21,4 @@ let accessorySchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('acessory', accessorySchema)
+module.exports = mongoose.model('acessoryMaker', accessorySchema)
