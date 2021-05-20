@@ -1,18 +1,26 @@
 const { Router } = require('express');
+// const acessory = require('../models/acessory');
 const router = Router();
 
+const acessoryServices=require('../services/acessoryServices')
 
 
 
-router.get('/acessory', (req, res) => {
-    res.render('createAccessory', { title: 'Acessory' })
+router.get('/create', (req, res) => {
+    res.render('createAccessory', {title: "Acessories"})
 })
 
-router.post('/acessory', (req, res) => {
-    
-    console.log(req.body)
-    res.redirect('/home')
-})
+router.post('/create', (req, res) => {
+
+//TODO: VALIDATION
+    acessoryServices.createAccessory(req.body)
+    .then(()=> res.redirect('/'))
+    .catch(()=>res.status(500))   
+});
+
+
+
+
 
 
 

@@ -9,12 +9,13 @@ router.use(bodyParser.urlencoded({ extended: true }))
 const controlerProduction = require('./controllers/productController')
 const aboutControler = require('./controllers/aboutController')
 const NotFoundController = require('./controllers/notFoundController')
+const acsecsoryControler = require('./controllers/acessorysControler')
 
 router.use('/', controlerProduction);
 router.use('/create', controlerProduction);
+router.use('/acessories', acsecsoryControler)
 router.use('/about', aboutControler);
 router.use('/details/:id?', controlerProduction);
-router.use('/acessories',controlerProduction)
 
 
 router.use('*', NotFoundController)

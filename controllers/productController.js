@@ -44,21 +44,24 @@ router.get('/details/:id?', (req, res) => {
 
 
 
-router.get('/accessory', (req, res) => {
-    res.render('createAccessory', { title: 'Acessory' })
-})
+router.get('/:accessoryId/attach',async(req, res) => {
+   
+    let product = await productServices.getOne(req.params.accessoryId)
+   
+    let acessories = await acessoryServices.getALL()
 
-router.post('/accessory', (req, res) => {
+    console.log(acessories)
+    res.render('attachAccessory', { product, acessories })
 
-
-
-
-        acessoryServices.create(req.body)
-            .then(() => res.redirect('/'))
 
 
 
 })
+
+// router.post('/accessory', (req, res) => {
+//         acessoryServices.create(req.body)
+//             .then(() => res.redirect('/'))
+// })
 
 
 

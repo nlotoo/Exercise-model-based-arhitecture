@@ -1,12 +1,21 @@
-const acessoryModel = require('../models/acessory')
+const Acessory = require('../models/acessory')
+
+
+
+function getALL(){
+
+    let data = Acessory.find().lean()
+    
+    
+    return data
+}
+
+
 
 
 function createAccessory(data) {
 
-    let acessory = new acessoryModel(data)
-
-
-    console.log(acessory)
+    let acessory = new Acessory(data)
     return acessory.save()
 
 }
@@ -14,4 +23,5 @@ function createAccessory(data) {
 
 module.exports = {
     createAccessory,
+    getALL,
 }
