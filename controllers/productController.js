@@ -33,18 +33,18 @@ router.post('/create', (req, res) => {
 router.get('/details/:id?', async (req, res) => {
 
 
-    let product = await productServices.getOnewhitAcessories(req.params.id);
+    // let product = await productServices.getOne(req.params.id);
+
+   
+     let product = await productServices.getOnewhitAcessories(req.params.id)
+
+
+    // console.log(product)
 
     // console.log(product.accessory)
-     let acessory = await productServices.getOneAcessory(product.accessory)
 
 
     console.log(product)
-
-    console.log(product.accessory)
-
-
-
     res.render('details', { title: 'Details', product })
 
 

@@ -2,7 +2,6 @@
 const CubeMaker = require('../models/cubic')
 const acessoryMaker = require('../models/acessory')
 
-
 function getAllData(query) {
     // let result = CubeMaker.getAll()
     let result = CubeMaker.find({}).lean()
@@ -24,6 +23,7 @@ function getAllData(query) {
 function getOne(id) {
     return CubeMaker.findById(id).lean()
 
+
 }
 
 function create(data) {
@@ -41,18 +41,21 @@ async function attachServices(productId, acessoryId) {
 
 function getOnewhitAcessories(id) {
     return CubeMaker.findById(id)
-        .populate('Accessory')
+        .populate('acessoryMaker')
         .lean()
 }
-function getOneAcessory(array) {
-    let result = [];
-    array.forEach(id => {
-        result.push(acessoryMaker.findById(id))
-    });
-   
-    return result
 
-}
+
+
+// function getOneAcessory(array) {
+//     let result = [];
+//     array.forEach(id => {
+//         result.push(acessoryMaker.findById(id))
+//     });
+
+//     return result
+
+// }
 
 
 
@@ -62,5 +65,5 @@ module.exports = {
     getOne,
     attachServices,
     getOnewhitAcessories,
-    getOneAcessory,
+    // getOneAcessory,
 }
