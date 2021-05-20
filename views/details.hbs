@@ -1,15 +1,16 @@
 <main>
-  <h1>{{product.name}}</h1>
-  <img class="cube" src="{{product.imageUrl}}">
-  <div class="details">
-    <p><span>Description:</span>{{product.description}}</p>
-    <p><span>Difficulty level:</span> {{product.difficultyLevel}}</p>
-    <a class="btn" href="/">Back</a>
-    <a class="btn" href="http://localhost:5000/{{product._id}}/attach">Attach</a>
-  </div>
+    <h1>{{prodcut.name}}</h1>
+    <img class="cube" src="{{product.imageUrl}}">
+    <div class="details">
+        <p><span>Description:</span>{{product.description}}</p>
+        <p><span>Difficulty level:</span> {{product.difficultyLevel}}</p>
+        <a class="btn" href="/">Back</a>
+          <a class="btn" href="http://localhost:5000/{{product._id}}/attach">Attach</a>
+    </div>
+    <h2>Accessories</h2>
+    <div class="accessories">
+        {{#each product.acessories}}
+        {{>acessories}}
+        {{/each}}
+    </div>
 </main>
-</div>
-
-</body>
-
-</html>

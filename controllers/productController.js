@@ -30,38 +30,42 @@ router.post('/create', (req, res) => {
 
 })
 
+router.get('/details/:id?', async (req, res) => {
 
-router.get('/details/:id?', (req, res) => {
 
-    productServices.getOne(req.params.id)
-        .then(product => {
-            res.render('details', { title: 'Details', product })
+    let product = await productServices.getOnewhitAcessories(req.params.id);
 
-        })
-        .catch(() => res.status(500))
+    // console.log(product.accessory)
+     let acessory = await productServices.getOneAcessory(product.accessory)
+
+
+    console.log(product)
+
+    console.log(product.accessory)
+
+
+
+    res.render('details', { title: 'Details', product })
+
+
 
 })
 
 
 
-router.get('/:accessoryId/attach',async(req, res) => {
-   
+router.get('/:accessoryId/attach', async (req, res) => {
     let product = await productServices.getOne(req.params.accessoryId)
-   
     let acessories = await acessoryServices.getALL()
 
-    console.log(acessories)
-    res.render('attachAccessory', { product, acessories })
-
-
-
+    res.render('attachAccessory', { title: 'Attach acessory', product, acessories })
 
 })
 
-// router.post('/accessory', (req, res) => {
-//         acessoryServices.create(req.body)
-//             .then(() => res.redirect('/'))
-// })
+router.post('/:accessoryId/attach', (req, res) => {
+    productServices.attachServices(req.params.accessoryId, req.body.accessory)
+        .then(() => res.redirect('/'))
+
+})
 
 
 
