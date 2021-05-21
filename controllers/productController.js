@@ -35,17 +35,12 @@ router.get('/details/:id?', async (req, res) => {
 
     // let product = await productServices.getOne(req.params.id);
 
-   
-     let product = await productServices.getOnewhitAcessories(req.params.id)
 
+    let product = await productServices.getOnewhitAcessories(req.params.id)
+    let acessories = product.accessory
 
-    // console.log(product)
-
-    // console.log(product.accessory)
-
-
-    console.log(product)
-    res.render('details', { title: 'Details', product })
+    console.log(product.accessory)
+    res.render('details', { title: 'Details', product, acessories })
 
 
 

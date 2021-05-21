@@ -41,7 +41,7 @@ async function attachServices(productId, acessoryId) {
 
 function getOnewhitAcessories(id) {
     return CubeMaker.findById(id)
-        .populate('acessoryMaker')
+        .populate('accessory')
         .lean()
 }
 
