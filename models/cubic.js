@@ -1,6 +1,4 @@
-// const fs = require('fs')
-// const path = require('path')
-// const database = require('../config/db.json')
+
 
 const mongoose = require('mongoose')
 

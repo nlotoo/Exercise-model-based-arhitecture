@@ -32,28 +32,18 @@ router.post('/create', (req, res) => {
 
 router.get('/details/:id?', async (req, res) => {
 
-
-    // let product = await productServices.getOne(req.params.id);
-
-
     let product = await productServices.getOnewhitAcessories(req.params.id)
     let acessories = product.accessory
 
-    console.log(product.accessory)
     res.render('details', { title: 'Details', product, acessories })
-
-
 
 })
 
-
-
 router.get('/:accessoryId/attach', async (req, res) => {
     let product = await productServices.getOne(req.params.accessoryId)
-    let acessories = await acessoryServices.getALL()
-
+    let acessories = await acessoryServices.whitOutThisIds(product.accessory)
+ 
     res.render('attachAccessory', { title: 'Attach acessory', product, acessories })
-
 })
 
 router.post('/:accessoryId/attach', (req, res) => {

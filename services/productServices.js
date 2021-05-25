@@ -3,27 +3,33 @@ const CubeMaker = require('../models/cubic')
 const acessoryMaker = require('../models/acessory')
 
 function getAllData(query) {
-    // let result = CubeMaker.getAll()
+   
+
     let result = CubeMaker.find({}).lean()
-
-    if (query.search) {
-        result = database.filter(x => x.name.toLowerCase().includes(query.search))
-    }
-    if (query.from) {
-        result = database.filter(x => Number(x.difficultyLevel) >= query.from)
-    }
-    if (query.to) {
-        result = database.filter(x => Number(x.difficultyLevel) <= query.to)
-    }
-
+    
+    result.then(production => {
+        
+        
+        if (query.search) {
+            result = production.filter(x => x.name.toLowerCase().includes(query.search))
+        }
+        if (query.from) {
+            result = production.filter(x => Number(x.difficultyLevel) >= query.from)
+        }
+        if (query.to) {
+            result = production.filter(x => Number(x.difficultyLevel) <= query.to)
+        }
+      
+    })
+  
     return result
+ 
+
 
 }
 
 function getOne(id) {
     return CubeMaker.findById(id).lean()
-
-
 }
 
 function create(data) {
@@ -46,24 +52,11 @@ function getOnewhitAcessories(id) {
 }
 
 
-
-// function getOneAcessory(array) {
-//     let result = [];
-//     array.forEach(id => {
-//         result.push(acessoryMaker.findById(id))
-//     });
-
-//     return result
-
-// }
-
-
-
 module.exports = {
     create,
     getAllData,
     getOne,
     attachServices,
     getOnewhitAcessories,
-    // getOneAcessory,
+
 }
