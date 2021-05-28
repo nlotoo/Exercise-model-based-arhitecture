@@ -16,12 +16,16 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         await authService.register(req.body)
+        res.render('login')
     }
-    catch {
-        res.render('login', { error })
+    catch (error) {
+        res.render('register', { error })
     }
 
+
 })
+
+
 
 
 module.exports = router;
