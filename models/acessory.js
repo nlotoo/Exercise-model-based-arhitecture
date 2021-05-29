@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 
 
 let accessorySchema = new mongoose.Schema({
-
-  
+    
     name: {
         required: true,
         type: String

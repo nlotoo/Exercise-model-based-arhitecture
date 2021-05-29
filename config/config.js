@@ -1,10 +1,13 @@
 const config = {
 
     development: {
-        PORT: 5000
+        PORT: 5000,
+        SALT: 3,
     },
     production: {
-        PORT: 80
+        PORT: 80,
+        SALT: 5,
+
     }
 }
 

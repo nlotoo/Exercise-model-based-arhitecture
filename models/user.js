@@ -1,14 +1,13 @@
 const mongoose = require('mongoose')
-const uniqID = require('uniqid')
+
 
 let userSchema = new mongoose.Schema({
 
-    
     login: {
         required: true,
         type: String
     },
-    pasword: {
+    password: {
         required: true,
         type: String
     }
@@ -16,4 +15,4 @@ let userSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('userMaker', userSchema)
+module.exports = mongoose.model('Users', userSchema)

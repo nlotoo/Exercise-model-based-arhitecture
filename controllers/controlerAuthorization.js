@@ -8,6 +8,20 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
+router.post('/login', async (req, res) => {
+
+    try {
+        const result = await authService.login(req.body)
+
+        res.cookie(`SESSION_TOKEN = ${result}`)
+        res.render('home')
+    }
+    catch (error) {
+        res.render('login', { error })
+    }
+
+})
+
 
 router.get('/register', (req, res) => {
     res.render('register')
@@ -21,8 +35,6 @@ router.post('/register', async (req, res) => {
     catch (error) {
         res.render('register', { error })
     }
-
-
 })
 
 
