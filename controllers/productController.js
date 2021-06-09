@@ -26,7 +26,7 @@ router.post('/create', (req, res) => {
 
     // TODO: VALIDATION
 
-    productServices.create(data)
+    productServices.create(data, req.user)
     res.redirect('/')
 
 })
@@ -61,10 +61,30 @@ router.get('/:id/edit', gardAuth, (req, res) => {
     })
 })
 
-router.post('/:id/edit', gardAuth, (req, res) => {
-  console.log(req.body)
+router.post('/:id/edit', gardAuth, async (req, res) => {
+
+    let product = await productServices.updateOne(req.params.id, req.body)
+
+    res.redirect(`/details/${req.params.id}`)
+
+
 })
 
+router.get('/:id/delete', gardAuth, async (req, res) => {
+
+    let product = await productServices.getOne(req.params.id)
+    res.render('deleteCubePage', product)
+
+})
+
+router.post('/:id/delete', gardAuth, async (req, res) => {
+
+    let product = await productServices.deleteOne(req.params.id)
+
+    res.redirect(`/`)
+
+
+})
 
 
 
