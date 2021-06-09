@@ -1,19 +1,29 @@
 const { Router } = require('express')
 const router = Router()
 const authService = require('../services/authServices')
+const { COOKIE_NAME } = require('../config/config')
+
+
+const gardGuest = require('../middleware/isGuest')
+const gardAuth = require('../middleware/isAuthtication')
 
 
 
-router.get('/login', (req, res) => {
+
+
+router.get('/login', gardGuest, (req, res) => {
     res.render('login')
-})
+})  
 
-router.post('/login', async (req, res) => {
+router.post('/login', gardGuest, async (req, res) => {
 
     try {
         const result = await authService.login(req.body)
 
-        res.cookie(`SESSION_TOKEN = ${result}`)
+        // console.log(result)
+        res.cookie(`${COOKIE_NAME}`, result)
+        // console.log(req.cookies)
+
         res.render('home')
     }
     catch (error) {
@@ -23,11 +33,11 @@ router.post('/login', async (req, res) => {
 })
 
 
-router.get('/register', (req, res) => {
+router.get('/register', gardGuest, (req, res) => {
     res.render('register')
 })
 
-router.post('/register', async (req, res) => {
+router.post('/register', gardGuest, async (req, res) => {
     try {
         await authService.register(req.body)
         res.render('login')
@@ -37,6 +47,11 @@ router.post('/register', async (req, res) => {
     }
 })
 
+
+router.get('/logout', gardAuth, async (req, res) => {
+    res.clearCookie(COOKIE_NAME)
+    res.redirect('/')
+})
 
 
 

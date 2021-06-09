@@ -4,15 +4,14 @@ const express = require('express');
 const app = express();
 
 const expressConfig = require('./config/express')
-
 require('./config/mongoose.js')(app);
 
 
+
+expressConfig(app)
 const config = require('./config/config.js')
 const router = require('./routes')
 
-
-expressConfig(app)
 
 
 

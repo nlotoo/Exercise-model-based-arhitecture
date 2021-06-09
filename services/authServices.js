@@ -1,7 +1,8 @@
 const Users = require('../models/user')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-
+const { SALT } = require('../config/config')
+const { SECRET } = require('../config/config')
 
 const register = async (userData) => {
 
@@ -10,8 +11,8 @@ const register = async (userData) => {
 
     }
 
-    const salt = await bcrypt.genSalt(3)
-    const hash = await bcrypt.hash(userData.password, salt)
+    // const salt = await bcrypt.genSalt(3)
+    const hash = await bcrypt.hash(userData.password, SALT)
     let lowercase = userData.username.toLowerCase()
     const user = new Users({ login: lowercase, password: hash })
     return user.save()
@@ -32,7 +33,10 @@ const login = async (userData) => {
         throw ({ message: 'User is not found' })
     }
 
-    let token = jwt.sign({ TOKEN: user._id }, 'secretId')
+    let token = jwt.sign({ TOKEN: user._id , USERNAME: user.username }, `${SECRET}`)
+
+   
+   // console.log(token)
 
 
     return token

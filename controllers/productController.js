@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 
+const gardAuth = require('../middleware/isAuthtication')
 
 const productServices = require('../services/productServices')
 const acessoryServices = require('../services/acessoryServices')
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
         .catch(() => res.status(500).end)
 });
 
-router.get('/create', (req, res) => {
+router.get('/create', gardAuth, (req, res) => {
     res.render('create', { title: 'Create' })
 })
 router.post('/create', (req, res) => {
@@ -42,7 +43,7 @@ router.get('/details/:id?', async (req, res) => {
 router.get('/:accessoryId/attach', async (req, res) => {
     let product = await productServices.getOne(req.params.accessoryId)
     let acessories = await acessoryServices.whitOutThisIds(product.accessory)
- 
+
     res.render('attachAccessory', { title: 'Attach acessory', product, acessories })
 })
 
