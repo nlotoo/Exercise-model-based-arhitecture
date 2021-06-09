@@ -54,6 +54,16 @@ router.post('/:accessoryId/attach', (req, res) => {
 })
 
 
+router.get('/:id/edit', gardAuth, (req, res) => {
+    productServices.getOne(req.params.id).then(product => {
+        res.render('editCubePage', product)
+        console.log(product)
+    })
+})
+
+router.post('/:id/edit', gardAuth, (req, res) => {
+  console.log(req.body)
+})
 
 
 
