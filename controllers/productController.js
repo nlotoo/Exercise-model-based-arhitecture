@@ -71,19 +71,13 @@ router.post('/:id/edit', gardAuth, async (req, res) => {
 })
 
 router.get('/:id/delete', gardAuth, async (req, res) => {
-
     let product = await productServices.getOne(req.params.id)
     res.render('deleteCubePage', product)
-
 })
 
 router.post('/:id/delete', gardAuth, async (req, res) => {
-
-    let product = await productServices.deleteOne(req.params.id)
-
+    await productServices.deleteOne(req.params.id)
     res.redirect(`/`)
-
-
 })
 
 
