@@ -4,16 +4,18 @@ const authService = require('../services/authServices')
 const { COOKIE_NAME } = require('../config/config')
 
 
+const passwordValidator = require('../middleware/validateMiddleware')
+
 const gardGuest = require('../middleware/isGuest')
 const gardAuth = require('../middleware/isAuthtication')
 
-
+const validator = require("validator")
 
 
 
 router.get('/login', gardGuest, (req, res) => {
     res.render('login')
-})  
+})
 
 router.post('/login', gardGuest, async (req, res) => {
 
@@ -37,8 +39,9 @@ router.get('/register', gardGuest, (req, res) => {
     res.render('register')
 })
 
-router.post('/register', gardGuest, async (req, res) => {
+router.post('/register', gardGuest, passwordValidator, async (req, res) => {
     try {
+
         await authService.register(req.body)
         res.render('login')
     }

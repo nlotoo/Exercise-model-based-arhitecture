@@ -23,10 +23,12 @@
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
+    "express-validator": "^6.11.1",
     "jsonwebtoken": "^8.5.1",
     "mogoose": "0.0.1-security",
     "mongoose": "^5.12.9",
     "nodemon": "^2.0.7",
-    "uniqid": "^5.3.0"
+    "uniqid": "^5.3.0",
+    "validator": "^13.6.0"
   }
 }
